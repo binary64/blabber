@@ -1,0 +1,7 @@
+subscription NumberOfSiteUsers {
+  user_aggregate {
+    aggregate {
+      count
+    }
+  }
+}
