@@ -13,9 +13,9 @@
         "cwd": "services/api",
         "parallel": false,
         "commands": [
-            "docker-compose up -d postgres",
+            "docker compose up -d postgres",
             "wait-on tcp:5433",
-            "docker-compose up -d --remove-orphans --build",
+            "docker compose up -d --remove-orphans --build",
             "wait-on http-get://localhost:8081/healthz",
             "postmon --name api:serve --include migrations metadata codegen.ts -- graphql-codegen --config codegen.ts",
             "hasura console --envfile .env --endpoint http://localhost:8081"
