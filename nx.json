@@ -37,8 +37,5 @@
       }
     }
   },
-  "defaultProject": "blabber",
-  "workspaceLayout": {
-    "servicesDir": "services"
-  }
+  "defaultProject": "blabber"
 }
