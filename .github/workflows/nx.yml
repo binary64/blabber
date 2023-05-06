@@ -1,0 +1,18 @@
+name: Nx
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: lint,test,build,e2e,deploy
