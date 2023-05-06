@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "nx run-many --target=codegen",
-    "dev": "concurrently --names WEB,API --ks SIGKILL --kill-others-on-fail \"nx serve\" \"wait-on http://localhost:4200 && nx serve api\""
+    "codegen": "nx run-many --target=codegen",
+    "dev": "concurrently --names WEB,API --ks SIGKILL --kill-others-on-fail \"nx run-many --target=codegen --all --watch\" \"nx serve\" \"wait-on http://localhost:4200 && nx serve api\""
   },
   "private": true,
   "devDependencies": {

@@ -14,7 +14,7 @@ const StyledPage = styled.div`
 `;
 
 gql`
-  mutation demoAction {
+  mutation DemoAction {
     insert_user_one(object: {}) {
       id
     }
@@ -24,11 +24,14 @@ gql`
 export function Index() {
   const { data } = useNumberOfSiteUsersSubscription();
   const [handleAction] = useDemoActionMutation();
-  const handleClick = useCallback(() => void handleAction(), [handleAction]);
+  const handleClick = useCallback(
+    () => void handleAction(),
+    [handleAction]
+  );
   return (
     <StyledPage>
       👋{data?.user_aggregate.aggregate.count}👋
-      <button onClick={handleClick}>Hit me</button>
+      <button onClick={handleClick}>Hit me v2</button>
     </StyledPage>
   );
 }
