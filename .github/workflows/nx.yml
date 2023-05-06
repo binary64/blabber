@@ -5,7 +5,7 @@ on:
       - 'main'
 
 jobs:
-  lint:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
