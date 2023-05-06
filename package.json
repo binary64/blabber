@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "nx run-many --target=codegen",
     "dev": "concurrently --names WEB,API --ks SIGKILL --kill-others-on-fail \"nx serve\" \"wait-on http://localhost:4200 && nx serve api\""
   },
   "private": true,
