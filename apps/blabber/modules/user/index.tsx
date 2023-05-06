@@ -31,7 +31,12 @@ export function Index() {
   return (
     <StyledPage>
       👋{data?.user_aggregate.aggregate.count}👋
-      <button onClick={handleClick}>Hit me v2</button>
+      <button
+        className="btn btn-wide glass"
+        onClick={handleClick}
+      >
+        Hit me v2
+      </button>
     </StyledPage>
   );
 }
