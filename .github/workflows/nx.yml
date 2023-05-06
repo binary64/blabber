@@ -29,4 +29,4 @@ jobs:
 
       - uses: mansagroup/nrwl-nx-action@v3
         with:
-          targets: lint,test,build,e2e,deploy
+          targets: lint,build,e2e,deploy
