@@ -5,7 +5,6 @@
   "sourceRoot": "services/api",
   "targets": {
     "deploy": {
-      "executor": "nx:run-commands",
       "command": "bash services/api/cicd/deploy.sh"
     },
     "build": {
