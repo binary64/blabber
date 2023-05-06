@@ -1,9 +1,15 @@
 table:
   name: user
   schema: public
+insert_permissions:
+  - role: public
+    permission:
+      check: {}
+      columns: []
 select_permissions:
   - role: public
     permission:
-      columns: []
+      columns:
+        - id
       filter: {}
       allow_aggregations: true
