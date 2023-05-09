@@ -28,5 +28,7 @@ jobs:
         run: pnpm install
 
       - uses: mansagroup/nrwl-nx-action@v3
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         with:
           targets: lint,build,e2e,deploy
