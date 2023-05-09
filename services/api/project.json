@@ -5,7 +5,7 @@
   "sourceRoot": "services/api",
   "targets": {
     "deploy": {
-      "command": "bash services/api/cicd/deploy.sh"
+      "command": "services/api/cicd/deploy.sh"
     },
     "build": {
       "executor": "@raftlabs/nx-hasura:build"
