@@ -3,5 +3,14 @@
   "editorconfig": true,
   "printWidth": 70,
   "htmlWhitespaceSensitivity": "css",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "plugins": ["prettier-plugin-sh"],
+  "overrides": [
+    {
+      "files": "*.sh",
+      "options": {
+        "parser": "sh"
+      }
+    }
+  ]
 }
