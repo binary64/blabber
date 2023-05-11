@@ -29,9 +29,13 @@ jobs:
         run: pnpm install
 
       - name: Run test script
+        env:
+          TESTING_2: ${{ secrets.TESTING_2 }}
         run: |
           echo "TESTING_2: $TESTING_2"
           echo "TESTING_123: $TESTING_123"
+          echo "env.TESTING_123: ${{ env.TESTING_123 }}"
+          echo "env.TESTING_2: ${{ env.TESTING_2 }}"
           echo "secrets.TESTING_2: ${{ secrets.TESTING_2 }}"
 
       - uses: mansagroup/nrwl-nx-action@v3
