@@ -27,6 +27,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run test script
+        run: |
+          echo "TESTING_2: $TESTING_2"
+          echo "TESTING_123: $TESTING_123"
+
       - uses: mansagroup/nrwl-nx-action@v3
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
