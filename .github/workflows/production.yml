@@ -31,5 +31,7 @@ jobs:
       - uses: mansagroup/nrwl-nx-action@v3
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
+          HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
         with:
           targets: lint,build,e2e,deploy
