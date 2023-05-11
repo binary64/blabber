@@ -32,6 +32,7 @@ jobs:
         run: |
           echo "TESTING_2: $TESTING_2"
           echo "TESTING_123: $TESTING_123"
+          echo "secrets.TESTING_2: ${{ secrets.TESTING_2 }}"
 
       - uses: mansagroup/nrwl-nx-action@v3
         env:
