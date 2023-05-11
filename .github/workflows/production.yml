@@ -1,14 +1,13 @@
-name: Nx
+name: Production
 on:
   push:
     branches:
       - 'main'
-  pull_request: {}
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    environment: Staging
+    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,16 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Run test script
-        env:
-          TESTING_2: ${{ secrets.TESTING_2 }}
-        run: |
-          echo "TESTING_2: $TESTING_2"
-          echo "TESTING_123: $TESTING_123"
-          echo "env.TESTING_123: ${{ env.TESTING_123 }}"
-          echo "env.TESTING_2: ${{ env.TESTING_2 }}"
-          echo "secrets.TESTING_2: ${{ secrets.TESTING_2 }}"
 
       - uses: mansagroup/nrwl-nx-action@v3
         env:
