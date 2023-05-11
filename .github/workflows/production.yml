@@ -1,4 +1,4 @@
-name: Nx
+name: Production
 on:
   push:
     branches:
@@ -7,6 +7,7 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
