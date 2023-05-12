@@ -74,6 +74,9 @@
           }
         ]
       }
+    },
+    "deploy": {
+      "command": "bash apps/blabber/cicd/deploy.sh"
     }
   },
   "tags": ["react", "next", "frontend"]
