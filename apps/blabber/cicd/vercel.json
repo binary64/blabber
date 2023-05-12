@@ -1,5 +1,4 @@
 {
   "trailingSlash": false,
-  "buildCommand": "ls -al && mv next .next && ls -al",
-  "name": "blabber"
+  "buildCommand": "ls -al && mv next .next && ls -al"
 }
