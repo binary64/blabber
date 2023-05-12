@@ -35,7 +35,7 @@ export function Index() {
         className="btn btn-wide btn-primary glass"
         onClick={handleClick}
       >
-        Hit me v22
+        Hit me
       </button>
     </StyledPage>
   );
