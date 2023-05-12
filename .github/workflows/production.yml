@@ -1,4 +1,4 @@
-name: Production
+name: Nx
 on:
   push:
     branches:
