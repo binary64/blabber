@@ -2,4 +2,4 @@
 set -e
 
 mv dist/apps/blabber/.next dist/apps/blabber/next || true
-pnpm dlx vercel --cwd dist/apps/blabber --token "$VERCEL_TOKEN" deploy
+pnpx vercel --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" deploy dist/apps/blabber --prod
