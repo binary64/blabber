@@ -14,11 +14,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7
           run_install: false
 
       - name: Get pnpm store directory
@@ -30,31 +35,15 @@ jobs:
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          path: |
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+            ${{ env.HOME }}/.cache/Cypress
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - uses: mansagroup/nrwl-nx-action@v3
-        with:
-          targets: lint,build
-
-      - uses: cypress-io/github-action@v5
-        with:
-          install: true
-          browser: chrome
 
       - uses: mansagroup/nrwl-nx-action@v3
         env:
@@ -63,4 +52,4 @@ jobs:
           HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
           HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
         with:
-          targets: deploy
+          targets: lint,build,e2e,deploy
