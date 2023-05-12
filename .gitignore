@@ -44,3 +44,4 @@ Thumbs.db
 # Custom
 *.generated.ts
 *.generated.tsx
+.*-lock
