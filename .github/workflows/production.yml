@@ -42,22 +42,30 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - uses: mansagroup/nrwl-nx-action@v3
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
-          HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
+      - name: Nx lint
+        uses: mansagroup/nrwl-nx-action@v3
         with:
-          targets: lint,build,e2e
+          targets: lint
 
-      - uses: mansagroup/nrwl-nx-action@v3
+      - name: Nx build
+        uses: mansagroup/nrwl-nx-action@v3
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
-          HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ env.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
           NEXT_PUBLIC_WS_ENDPOINT: ${{ env.NEXT_PUBLIC_WS_ENDPOINT }}
+        with:
+          targets: build
+
+      - name: Nx e2e
+        uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: e2e
+
+      - name: Nx deploy
+        uses: mansagroup/nrwl-nx-action@v3
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
+          HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
         with:
           targets: deploy
