@@ -7,10 +7,7 @@ if [ ! -d "dist/apps/blabber" ]; then
   exit 1
 fi
 
-mv dist/apps/blabber/.next dist/apps/blabber/next || true
-
-ls -al dist/apps/blabber
-ls -al dist/apps/blabber/.next || true
+mv -T dist/apps/blabber/.next dist/apps/blabber/next || true
 
 echo "Ensuring Vercel token exists..."
 if [ -z "$VERCEL_TOKEN" ]; then
