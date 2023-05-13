@@ -41,6 +41,9 @@ Thumbs.db
 # Next.js
 .next
 
+# Sentry Auth Token
+.sentryclirc
+
 # Custom
 *.generated.ts
 *.generated.tsx
