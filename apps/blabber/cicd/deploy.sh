@@ -1,6 +1,15 @@
 #!/bin/sh
 set -e
 
+echo "Ensuring dist/apps/blabber exists..."
+if [ ! -d "dist/apps/blabber" ]; then
+  echo "dist/apps/blabber does not exist"
+  exit 1
+fi
+
+ls -al dist/apps/blabber
+ls -al dist/apps/blabber/.next || true
+
 echo "Ensuring Vercel token exists..."
 if [ -z "$VERCEL_TOKEN" ]; then
   echo "VERCEL_TOKEN env var is not set"
