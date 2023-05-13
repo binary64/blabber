@@ -1,5 +1,4 @@
 {
-  "trailingSlash": false,
   "buildCommand": "pwd && ls -al && ls -al .next",
-  "installCommand": "pwd && ls -al && mv next .next && pnpm install --frozen-lockfile"
+  "installCommand": "pwd && ls -al && mv next .next && pnpm install"
 }
