@@ -1,7 +1,6 @@
-// @ts-nocheck
-
 const { withNx } = require('@nx/next');
 const { withSentryConfig } = require('@sentry/nextjs');
+
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
