@@ -49,4 +49,9 @@ jobs:
           HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
           HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
         with:
-          targets: lint,build,e2e,deploy
+          targets: lint,build,e2e
+
+      - name: Debugging
+        shell: bash
+        run: |
+          ls -al dist/apps/blabber/.next
