@@ -1,6 +1,8 @@
 {
-    "conventionalCommits.scopes": [
-        "ci"
-    ],
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "conventionalCommits.scopes": ["ci"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.documentSelectors": [
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,graphql,yml,yaml,sh}"
+  ]
 }

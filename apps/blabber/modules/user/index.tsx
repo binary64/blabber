@@ -28,6 +28,11 @@ export function Index() {
     () => void handleAction(),
     [handleAction]
   );
+
+  function functionNotImplemented(): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <StyledPage>
       👋{data?.user_aggregate.aggregate?.count}👋
@@ -36,6 +41,17 @@ export function Index() {
         onClick={handleClick}
       >
         Hit me!
+      </button>
+      <button onClick={() => functionNotImplemented()}>
+        Function not implemented
+      </button>
+      <button
+        onClick={() =>
+          // @ts-expect-error This is a fake error to test Sentry
+          methodDoesNotExist()
+        }
+      >
+        methodDoesNotExist
       </button>
     </StyledPage>
   );
