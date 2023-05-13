@@ -10,10 +10,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "noEmit": true,
+    "strict": true,
     "paths": {}
   },
   "exclude": ["node_modules", "tmp"]

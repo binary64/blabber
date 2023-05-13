@@ -30,7 +30,7 @@ export function Index() {
   );
   return (
     <StyledPage>
-      👋{data?.user_aggregate.aggregate.count}👋
+      👋{data?.user_aggregate.aggregate?.count}👋
       <button
         className="btn btn-wide btn-primary glass"
         onClick={handleClick}
