@@ -49,9 +49,6 @@ jobs:
 
       - name: Nx build
         uses: mansagroup/nrwl-nx-action@v3
-        env:
-          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ env.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
-          NEXT_PUBLIC_WS_ENDPOINT: ${{ env.NEXT_PUBLIC_WS_ENDPOINT }}
         with:
           targets: build
 
