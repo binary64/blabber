@@ -7,6 +7,8 @@ if [ ! -d "dist/apps/blabber" ]; then
   exit 1
 fi
 
+mv dist/apps/blabber/.next dist/apps/blabber/next || true
+
 ls -al dist/apps/blabber
 ls -al dist/apps/blabber/.next || true
 
