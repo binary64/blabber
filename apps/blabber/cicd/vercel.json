@@ -1,4 +1,3 @@
 {
-  "buildCommand": "pwd && ls -al && ls -al .next",
-  "installCommand": "pwd && ls -al && rm -rf .next && mv -T next .next && pnpm install"
+  "buildCommand": "rm -rf .next && mv -T next .next"
 }
