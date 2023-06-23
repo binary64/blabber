@@ -1,8 +1,16 @@
 import gql from 'graphql-tag';
 import styled from '@emotion/styled';
-import { useNumberOfSiteUsersSubscription } from './numberOfSiteUsers.generated';
-import { useDemoActionMutation } from './index.generated';
+import {
+  NumberOfSiteUsersDocument,
+  NumberOfSiteUsersQuery,
+  useNumberOfSiteUsersQuery,
+} from './numberOfSiteUsers.generated';
+import {
+  DemoActionMutation,
+  useDemoActionMutation,
+} from './index.generated';
 import { useCallback } from 'react';
+import { useMutation } from '@apollo/client';
 
 const StyledPage = styled.div`
   display: flex;
@@ -13,17 +21,35 @@ const StyledPage = styled.div`
   font-size: 4rem;
 `;
 
-gql`
-  mutation DemoAction {
-    insert_user_one(object: {}) {
-      id
-    }
-  }
-`;
-
 export function Index() {
-  const { data } = useNumberOfSiteUsersSubscription();
-  const [handleAction] = useDemoActionMutation();
+  const { data } = useNumberOfSiteUsersQuery();
+  const [handleAction] = useMutation(
+    gql`
+      mutation DemoAction {
+        insert_user_one(object: {}) {
+          id
+        }
+      }
+    `,
+    {
+      optimisticResponse: { insert_user_one: { id: 'optimistic' } },
+      update: (cache) => {
+        cache.updateQuery<NumberOfSiteUsersQuery>(
+          { query: NumberOfSiteUsersDocument, optimistic: true },
+          (e) =>
+            e?.user_aggregate?.aggregate
+              ? {
+                  user_aggregate: {
+                    aggregate: {
+                      count: e.user_aggregate.aggregate.count + 1,
+                    },
+                  },
+                }
+              : undefined
+        );
+      },
+    }
+  );
   const handleClick = useCallback(
     () => void handleAction(),
     [handleAction]
@@ -35,17 +61,21 @@ export function Index() {
 
   return (
     <StyledPage>
-      👋{data?.user_aggregate.aggregate?.count}👋
+      Optimistic 👋{data?.user_aggregate.aggregate?.count}👋
       <button
         className="btn btn-wide btn-primary glass"
         onClick={handleClick}
       >
         Hit me!
       </button>
-      <button onClick={() => functionNotImplemented()}>
+      <button
+        className="btn btn-wide btn-primary glass"
+        onClick={() => functionNotImplemented()}
+      >
         Function not implemented
       </button>
       <button
+        className="btn btn-wide btn-primary glass"
         onClick={() =>
           // @ts-expect-error This is a fake error to test Sentry
           methodDoesNotExist()

@@ -1,4 +1,4 @@
-subscription NumberOfSiteUsers {
+query NumberOfSiteUsers {
   user_aggregate {
     aggregate {
       count
