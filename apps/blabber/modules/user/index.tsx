@@ -11,6 +11,10 @@ import {
 } from './index.generated';
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
+import packageJson from '../../../../package.json';
+
+const { version } = packageJson;
+const nxVersion = packageJson.devDependencies['@nx/react'];
 
 const StyledPage = styled.div`
   display: flex;
@@ -83,6 +87,10 @@ export function Index() {
       >
         methodDoesNotExist
       </button>
+      <div>
+        <p>Version: {version}</p>
+        <p>NX Version: {nxVersion}</p>
+      </div>
     </StyledPage>
   );
 }
