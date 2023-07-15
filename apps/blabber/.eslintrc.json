@@ -25,9 +25,6 @@
       "rules": {}
     }
   ],
-  "rules": {
-    "@next/next/no-html-link-for-pages": "off"
-  },
   "env": {
     "jest": true
   }
