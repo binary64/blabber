@@ -42,6 +42,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Show environment information
+        shell: bash
+        run: |
+          npx envinfo --system --binaries --browsers --npmPackages "next,react,next-auth,@auth/*"
+
       - name: Nx lint
         uses: mansagroup/nrwl-nx-action@v3
         with:
