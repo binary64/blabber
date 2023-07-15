@@ -68,7 +68,6 @@ export function Index() {
   if (!session) {
     return (
       <a
-        href="/api/auth/signin"
         onClick={(e) => {
           e.preventDefault();
           signIn();
