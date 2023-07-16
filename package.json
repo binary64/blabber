@@ -1,6 +1,6 @@
 {
   "name": "binary64",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "codegen": "nx run-many --target=codegen",
@@ -83,4 +83,3 @@
     "tslib": "^2.5.0"
   }
 }
-
