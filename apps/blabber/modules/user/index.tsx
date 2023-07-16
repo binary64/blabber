@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { signIn, useSession } from 'next-auth/react';
 import styled from '@emotion/styled';
 import {
   NumberOfSiteUsersDocument,
@@ -27,7 +26,6 @@ const StyledPage = styled.div`
 `;
 
 export function Index() {
-  const { data: session } = useSession();
   const { data } = useNumberOfSiteUsersQuery();
   const [handleAction] = useMutation(
     gql`
@@ -65,22 +63,8 @@ export function Index() {
     throw new Error('Function not implemented.');
   }
 
-  if (!session) {
-    return (
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          signIn();
-        }}
-      >
-        You must be signed in to view this page
-      </a>
-    );
-  }
-
   return (
     <StyledPage>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
       react:strict 👋{data?.user_aggregate.aggregate?.count}👋
       <button
         className="btn btn-wide btn-primary glass"
