@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import 'lucia-auth/polyfill/node';
+//import 'lucia-auth/polyfill/node';
 import { z } from 'zod';
 import { lucia } from 'lucia';
 import { nextjs } from 'lucia/middleware';
@@ -8,87 +8,102 @@ import { google } from '@lucia-auth/oauth/providers';
 export const auth = lucia({
   adapter: {
     session() {
-      console.log('session');
+      console.log('initializing adapter - session');
       return {
         async deleteSession() {
-          console.log('deleteSession');
+          console.log('session.deleteSession');
         },
         async deleteSessionsByUserId() {
-          console.log('deleteSessionsByUserId');
+          console.log('session.deleteSessionsByUserId');
         },
-        async getSession() {
-          console.log('getSession');
-          return {};
+        async getSession(sessionId) {
+          console.log('session.getSession', sessionId);
+          return {
+            id: sessionId,
+            user_id: 'ruj2tzzekjnbeef',
+            active_expires: 1690146754198,
+            idle_expires: 1691356354198,
+          };
         },
         async getSessionsByUserId() {
-          console.log('getSessionsByUserId');
+          console.log('session.getSessionsByUserId');
           return [];
         },
         async updateSession() {
-          console.log('updateSession');
+          console.log('session.updateSession');
         },
-        async setSession() {
-          console.log('setSession');
+        async setSession(session) {
+          console.log('session.setSession', session);
         },
       };
     },
     user() {
-      console.log('user');
+      console.log('initializing adapter - user');
       return {
         async deleteSession(sessionId) {
-          console.log('deleteSession', sessionId);
+          console.log('user.deleteSession', sessionId);
         },
         async deleteSessionsByUserId(userId) {
-          console.log('deleteSessionsByUserId', userId);
+          console.log('user.deleteSessionsByUserId', userId);
         },
         async getSession(sessionId) {
-          console.log('getSession', sessionId);
+          console.log('user.getSession', sessionId);
         },
         async getSessionsByUserId(userId) {
-          console.log('getSessionsByUserId', userId);
+          console.log('user.getSessionsByUserId', userId);
           return [];
         },
         async updateSession(sessionId, partialSession) {
-          console.log('updateSession', sessionId, partialSession);
+          console.log(
+            'user.updateSession',
+            sessionId,
+            partialSession
+          );
         },
         async setSession(session) {
-          console.log('setSession', session);
+          console.log('user.setSession', session);
         },
         async deleteKey(keyId) {
-          console.log('deleteKey', keyId);
+          console.log('user.deleteKey', keyId);
         },
         async getKey(keyId) {
-          console.log('getKey', keyId);
-          throw new Error('Method not implemented.');
+          console.log('user.getKey', keyId);
+          return null;
         },
         async setKey(key) {
-          console.log('setKey', key);
+          console.log('user.setKey', key);
         },
         async deleteKeysByUserId(userId) {
-          console.log('deleteKeysByUserId', userId);
+          console.log('user.deleteKeysByUserId', userId);
         },
         async deleteUser(userId) {
-          console.log('deleteUser', userId);
+          console.log('user.deleteUser', userId);
         },
         async getUser(userId) {
-          console.log('getUser', userId);
-          return {};
+          console.log('user.getUser', userId);
+
+          return {
+            id: userId,
+            fullName: 'John Doe',
+          };
         },
         async getKeysByUserId(userId: string) {
+          console.log('user.getKeysByUserId', userId);
           return [];
         },
         async setUser(user, key) {
-          console.log('setUser', user, key);
+          console.log('user.setUser', user, key);
         },
         async updateUser(userId, partialUser) {
-          console.log('updateUser', userId, partialUser);
+          console.log('user.updateUser', userId, partialUser);
         },
         async updateKey(keyId, partialKey) {
-          console.log('updateKey', keyId, partialKey);
+          console.log('user.updateKey', keyId, partialKey);
         },
         async getSessionAndUser(): Promise<
           [any, any] | [null, null]
         > {
+          console.log('user.getSessionAndUser');
           return [null, null];
         },
       };
@@ -118,7 +133,7 @@ const env = z
 export const googleAuth = google(auth, {
   clientId: env.GOOGLE_CLIENT_ID,
   clientSecret: env.GOOGLE_CLIENT_SECRET,
-  redirectUri: 'http://localhost:3000/api/oauth/google/callback',
+  redirectUri: 'http://localhost:4200/api/oauth/google',
   //accessType: 'offline',
   scope: ['email', 'profile'],
 });

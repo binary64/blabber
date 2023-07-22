@@ -11,6 +11,13 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: true,
   },
+  experimental: {
+    serverActions: true,
+    appDir: true,
+  },
+  compiler: {
+    emotion: false,
+  },
 };
 
 module.exports = [withSentryConfig, withNx].reduce((acc, next) => {
