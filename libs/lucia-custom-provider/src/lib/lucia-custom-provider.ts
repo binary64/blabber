@@ -1,11 +1,10 @@
 import type { Adapter } from 'lucia';
 import { GraphQLClient, gql } from 'graphql-request';
 import { getSdk } from './lucia-custom-provider.generated';
-import type { RequestConfig } from 'graphql-request/build/esm/types';
 
 export const adapter = (
   baseUrl: string,
-  headers?: RequestConfig['headers']
+  headers?: RequestInit['headers']
 ) => {
   const sdk = getSdk(
     new GraphQLClient(baseUrl, {
@@ -51,7 +50,7 @@ export const adapter = (
           }
         `;
         const ret = await sdk.GetSession({ sessionId });
-        return ret.data.user_session_by_pk ?? null;
+        return ret.user_session_by_pk ?? null;
       },
       async getSessionsByUserId(userId) {
         console.log('session.getSessionsByUserId');
@@ -66,7 +65,7 @@ export const adapter = (
           }
         `;
         const ret = await sdk.GetSessionsByUserId({ userId });
-        return ret.data.user_session;
+        return ret.user_session;
       },
       async updateSession(sessionId, partialSession) {
         console.log(
@@ -143,7 +142,7 @@ export const adapter = (
           }
         `;
         const ret = await sdk.GetKey({ keyId });
-        return ret.data.user_key_by_pk ?? null;
+        return ret.user_key_by_pk ?? null;
       },
       async setKey(key) {
         console.log('user.setKey', key);
@@ -178,8 +177,8 @@ export const adapter = (
           }
         `;
         const ret = await sdk.GetUser({ userId });
-        console.log('RETURNING', ret.data.user_by_pk);
-        return ret.data.user_by_pk;
+        console.log('RETURNING', ret.user_by_pk);
+        return ret.user_by_pk;
       },
       async getKeysByUserId(userId) {
         console.log('user.getKeysByUserId', userId);
@@ -199,7 +198,7 @@ export const adapter = (
           }
         `;
         const setUser = await sdk.SetUser({ user });
-        if (!setUser.data.insert_user_one) {
+        if (!setUser.insert_user_one) {
           throw new Error('Could not create user');
         }
         await sdk.SetKey({ key });

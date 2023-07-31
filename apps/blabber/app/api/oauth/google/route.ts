@@ -10,35 +10,26 @@ export const GET = async (request: Request) => {
   if (!storedState || storedState !== state || !code || !state) {
     return new Response(null, { status: 401 });
   }
-  try {
-    const {
-      existingUser,
-      googleUser: providerUser,
-      createUser,
-    } = await googleAuth.validateCallback(code);
+  const {
+    existingUser,
+    googleUser: providerUser,
+    createUser,
+  } = await googleAuth.validateCallback(code);
 
-    const getUser = async () => {
-      if (existingUser) return existingUser;
-      return await createUser({
-        attributes: {
-          fullName: providerUser.name,
-        },
-      });
-    };
-    const user = await getUser();
-    const session = await auth.createSession({
-      userId: user.userId,
-      attributes: {},
+  const getUser = async () => {
+    if (existingUser) return existingUser;
+    return await createUser({
+      attributes: {
+        fullName: providerUser.name,
+      },
     });
-    const authRequest = auth.handleRequest({
-      request: null,
-      cookies,
-    });
-    authRequest.setSession(session);
-    return NextResponse.redirect(new URL('/', url));
-  } catch (e) {
-    return new Response(e.message, {
-      status: 500,
-    });
-  }
+  };
+  const user = await getUser();
+  const session = await auth.createSession({
+    userId: user.userId,
+    attributes: {},
+  });
+  const authRequest = auth.handleRequest({ request: null, cookies });
+  authRequest.setSession(session);
+  return NextResponse.redirect(new URL('/', url));
 };

@@ -27,7 +27,8 @@
     "**/*.jsx",
     "next-env.d.ts",
     "../../graphql.config.ts",
-    "../../apps/blabber/.next/types/**/*.ts"
+    "../../apps/blabber/.next/types/**/*.ts",
+    "../../dist/apps/blabber/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

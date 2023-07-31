@@ -26,7 +26,6 @@ const config: CodegenConfig = {
         'typescript-graphql-request',
       ],
       config: {
-        rawRequest: true,
         maybeValue: 'T | undefined',
         strictScalars: true,
         scalars: {
