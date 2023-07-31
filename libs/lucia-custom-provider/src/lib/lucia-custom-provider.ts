@@ -1,8 +1,12 @@
 import type { Adapter } from 'lucia';
 import { GraphQLClient, gql } from 'graphql-request';
 import { getSdk } from './lucia-custom-provider.generated';
+import type { RequestConfig } from 'graphql-request/build/esm/types';
 
-export const adapter = (baseUrl: string, headers?: {}) => {
+export const adapter = (
+  baseUrl: string,
+  headers?: RequestConfig['headers']
+) => {
   const sdk = getSdk(
     new GraphQLClient(baseUrl, {
       headers,
