@@ -16,7 +16,11 @@
     "baseUrl": ".",
     "noEmit": true,
     "strict": true,
-    "paths": {}
+    "paths": {
+      "@binary64/lucia-custom-provider": [
+        "libs/lucia-custom-provider/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

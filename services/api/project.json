@@ -10,6 +10,17 @@
     "build": {
       "executor": "@raftlabs/nx-hasura:build"
     },
+    "codegen": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/api",
+        "commands": [
+          {
+            "command": "postmon --name graphql-codegen --include \"metadata/**\" --include \"migrations/**\" -- graphql-codegen --config codegen.ts"
+          }
+        ]
+      }
+    },
     "serve": {
       "executor": "nx:run-commands",
       "options": {

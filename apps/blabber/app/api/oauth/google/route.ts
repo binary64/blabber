@@ -21,7 +21,6 @@ export const GET = async (request: Request) => {
       if (existingUser) return existingUser;
       return await createUser({
         attributes: {
-          created_at: new Date(),
           fullName: providerUser.name,
         },
       });
@@ -29,9 +28,7 @@ export const GET = async (request: Request) => {
     const user = await getUser();
     const session = await auth.createSession({
       userId: user.userId,
-      attributes: {
-        created_at: new Date(),
-      },
+      attributes: {},
     });
     const authRequest = auth.handleRequest({
       request: null,
@@ -40,7 +37,7 @@ export const GET = async (request: Request) => {
     authRequest.setSession(session);
     return NextResponse.redirect(new URL('/', url));
   } catch (e) {
-    return new Response(null, {
+    return new Response(e.message, {
       status: 500,
     });
   }
