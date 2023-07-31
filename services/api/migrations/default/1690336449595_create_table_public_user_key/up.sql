@@ -1,0 +1,1 @@
+CREATE TABLE "public"."user_key" ("id" text NOT NULL, "created_at" timestamptz NOT NULL DEFAULT now(), "hashed_password" text NULL, "user_id" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON UPDATE cascade ON DELETE cascade);

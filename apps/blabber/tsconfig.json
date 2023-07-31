@@ -10,9 +10,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts", "../../graphql.config.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "next-env.d.ts",
+    "../../graphql.config.ts",
+    "../../apps/blabber/.next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "jest.config.ts",
