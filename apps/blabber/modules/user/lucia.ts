@@ -11,6 +11,9 @@ export const auth = lucia({
   env: process.env.NODE_ENV === 'development' ? 'DEV' : 'PROD',
   middleware: nextjs(),
   getUserAttributes: (userData) => userData,
+  sessionCookie: {
+    expires: false,
+  },
 });
 
 const env = z

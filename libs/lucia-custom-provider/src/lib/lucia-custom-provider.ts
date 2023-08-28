@@ -4,12 +4,12 @@ import { getSdk } from './lucia-custom-provider.generated';
 
 export const adapter = (
   baseUrl: string,
-  headers?: RequestInit['headers']
+  headers?: RequestInit['headers'],
 ) => {
   const sdk = getSdk(
     new GraphQLClient(baseUrl, {
       headers,
-    })
+    }),
   );
   return () =>
     ({
@@ -71,7 +71,7 @@ export const adapter = (
         console.log(
           'session.updateSession',
           sessionId,
-          partialSession
+          partialSession,
         );
         gql`
           mutation UpdateSession(
@@ -142,7 +142,13 @@ export const adapter = (
           }
         `;
         const ret = await sdk.GetKey({ keyId });
-        return ret.user_key_by_pk ?? null;
+        return ret.user_key_by_pk
+          ? {
+              ...ret.user_key_by_pk,
+              hashed_password:
+                ret.user_key_by_pk?.hashed_password ?? null,
+            }
+          : null;
       },
       async setKey(key) {
         console.log('user.setKey', key);
@@ -153,7 +159,7 @@ export const adapter = (
             }
           }
         `;
-        await sdk.SetKey({ key });
+        await sdk.SetKey({ key: {} });
       },
       async deleteUser(userId) {
         console.log('user.deleteUser', userId);
@@ -201,7 +207,12 @@ export const adapter = (
         if (!setUser.insert_user_one) {
           throw new Error('Could not create user');
         }
-        await sdk.SetKey({ key });
+        await sdk.SetKey({
+          key: {
+            ...key,
+            hashed_password: key.hashed_password ?? undefined,
+          },
+        });
       },
       async updateUser(userId, partialUser) {
         console.log('user.updateUser', userId, partialUser);
@@ -209,5 +220,5 @@ export const adapter = (
       async updateKey(keyId, partialKey) {
         console.log('user.updateKey', keyId, partialKey);
       },
-    } satisfies Adapter);
+    }) satisfies Adapter;
 };

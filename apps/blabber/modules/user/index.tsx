@@ -1,3 +1,5 @@
+'use client';
+
 import gql from 'graphql-tag';
 import styled from '@emotion/styled';
 import {
@@ -5,10 +7,6 @@ import {
   NumberOfSiteUsersQuery,
   useNumberOfSiteUsersQuery,
 } from './numberOfSiteUsers.generated';
-import {
-  DemoActionMutation,
-  useDemoActionMutation,
-} from './index.generated';
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
 import packageJson from '../../../../package.json';
@@ -49,14 +47,14 @@ export function Index() {
                     },
                   },
                 }
-              : undefined
+              : undefined,
         );
       },
-    }
+    },
   );
   const handleClick = useCallback(
     () => void handleAction(),
-    [handleAction]
+    [handleAction],
   );
 
   function functionNotImplemented(): void {

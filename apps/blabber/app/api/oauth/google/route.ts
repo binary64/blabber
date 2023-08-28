@@ -1,8 +1,8 @@
 import { auth, googleAuth } from '../../../../modules/user/lucia';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async (request: Request) => {
+export const GET = async (request: NextRequest) => {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
@@ -29,7 +29,7 @@ export const GET = async (request: Request) => {
     userId: user.userId,
     attributes: {},
   });
-  const authRequest = auth.handleRequest({ request: null, cookies });
+  const authRequest = auth.handleRequest({ request, cookies });
   authRequest.setSession(session);
   return NextResponse.redirect(new URL('/', url));
 };
