@@ -16,12 +16,14 @@ export const auth = lucia({
   },
 });
 
-const env = z
-  .object({
-    GOOGLE_CLIENT_ID: z.string().nonempty(),
-    GOOGLE_CLIENT_SECRET: z.string().nonempty(),
-  })
-  .parse(process.env);
+const envSchema = z.object({
+  GOOGLE_CLIENT_ID: z.string().nonempty(),
+  GOOGLE_CLIENT_SECRET: z.string().nonempty(),
+});
+
+const env = process.env.CI
+  ? ({} as z.infer<typeof envSchema>)
+  : envSchema.parse(process.env);
 
 export const googleAuth = google(auth, {
   clientId: env.GOOGLE_CLIENT_ID,
