@@ -24,5 +24,5 @@ vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/verce
 echo "Logged in!"
 
 echo "Deploying..."
-vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" deploy --yes --prod
+vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" deploy --yes
 echo "Deployed!"
