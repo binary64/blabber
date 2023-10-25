@@ -1,0 +1,74 @@
+name: Nx
+on:
+  pull_request: {}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: |
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Show environment information
+        shell: bash
+        run: |
+          npx envinfo --system --binaries --browsers --npmPackages "next,react,next-auth,@auth/*"
+
+      - name: Nx lint
+        uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: lint
+
+      - name: Nx build
+        uses: mansagroup/nrwl-nx-action@v3
+        env:
+          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
+          NEXT_PUBLIC_WS_ENDPOINT: ${{ vars.NEXT_PUBLIC_WS_ENDPOINT }}
+          NEXT_PUBLIC_SENTRY_DSN: ${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
+        with:
+          targets: build
+
+      - name: Nx e2e
+        uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: e2e
+
+      - name: Nx deploy
+        uses: mansagroup/nrwl-nx-action@v3
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
+          HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_GRAPHQL_ENDPOINT }}
+        with:
+          targets: deploy
