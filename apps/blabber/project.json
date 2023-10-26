@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/blabber"
@@ -46,9 +44,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/blabber/jest.config.ts",
         "passWithNoTests": true
@@ -61,14 +57,10 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/blabber/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/blabber/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "codegen": {
@@ -86,9 +78,5 @@
       "command": "bash apps/blabber/cicd/deploy.sh"
     }
   },
-  "tags": [
-    "react",
-    "next",
-    "frontend"
-  ]
+  "tags": ["react", "next", "frontend"]
 }
