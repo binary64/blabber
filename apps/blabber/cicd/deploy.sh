@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+ls -al
+
 echo "Ensuring dist/apps/blabber exists..."
 if [ ! -d "dist/apps/blabber" ]; then
   echo "dist/apps/blabber does not exist"
@@ -19,11 +21,14 @@ echo "Installed!"
 
 echo "Logging in..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" link --yes
+ls -al
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" pull --yes
+ls -al
 echo "Logged in!"
 
 echo "Building..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build
+ls -al
 echo "Built!"
 
 echo "Deploying..."
