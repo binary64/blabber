@@ -1,4 +1,3 @@
 {
-  "buildCommand": "rm -rf .next && mv -T next .next",
   "installCommand": "npx envinfo --system --binaries --browsers --npmPackages \"next,react,next-auth,@auth/*\" && yarn install --frozen-lockfile"
 }
