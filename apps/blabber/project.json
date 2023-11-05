@@ -15,7 +15,8 @@
         "includeDevDependenciesInPackageJson": false,
         "debug": true,
         "profile": true,
-        "experimentalAppOnly": true
+        "experimentalAppOnly": true,
+        "generateLockfile": true
       },
       "configurations": {
         "development": {
