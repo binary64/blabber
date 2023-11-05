@@ -1,5 +1,6 @@
 const { withNx } = require('@nx/next');
 const { withSentryConfig } = require('@sentry/nextjs');
+const path = require('path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -12,6 +13,8 @@ const nextConfig = {
     svgr: true,
   },
   experimental: {
+    // this includes files from the monorepo base two directories up
+    outputFileTracingRoot: path.join(__dirname, '../../'),
     serverActions: true,
     appDir: true,
   },
@@ -49,7 +52,7 @@ module.exports = [withSentryConfig, withNx].reduce((acc, next) => {
 
         // Automatically tree-shake Sentry logger statements to reduce bundle size
         disableLogger: true,
-      }
+      },
     );
   }
   return next(acc);

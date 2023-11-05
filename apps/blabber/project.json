@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "output": "export",
+        "output": "standalone",
         "outputPath": "dist/apps/blabber",
         "buildLibsFromSource": false,
         "includeDevDependenciesInPackageJson": false,
