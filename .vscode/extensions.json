@@ -3,6 +3,13 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "foxundermoon.shell-format",
+    "github.vscode-github-actions",
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax",
+    "exiasr.hadolint",
+    "davidanson.vscode-markdownlint",
+    "timonwong.shellcheck"
   ]
 }

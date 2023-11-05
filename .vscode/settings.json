@@ -4,5 +4,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.documentSelectors": [
     "**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,graphql,yml,yaml,sh}"
-  ]
+  ],
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }
