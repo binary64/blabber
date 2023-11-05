@@ -9,7 +9,13 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/blabber"
+        "output": "export",
+        "outputPath": "dist/apps/blabber",
+        "buildLibsFromSource": false,
+        "includeDevDependenciesInPackageJson": false,
+        "debug": true,
+        "profile": true,
+        "experimentalAppOnly": true
       },
       "configurations": {
         "development": {
@@ -34,12 +40,6 @@
           "buildTarget": "blabber:build:production",
           "dev": false
         }
-      }
-    },
-    "export": {
-      "executor": "@nx/next:export",
-      "options": {
-        "buildTarget": "blabber:build:production"
       }
     },
     "test": {
