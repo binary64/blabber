@@ -49,3 +49,6 @@ Thumbs.db
 *.generated.tsx
 .*-lock
 *.local
+
+# Nix
+/.direnv/
