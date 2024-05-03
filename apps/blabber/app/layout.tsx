@@ -1,15 +1,11 @@
-/** @jsxImportSource react */
-
-export const metadata = {
-  title: 'Blabber',
-};
-
 export default function RootLayout({
   children,
-}: React.PropsWithChildren) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  );
+  )
 }

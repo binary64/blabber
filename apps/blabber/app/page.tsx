@@ -1,8 +1,4 @@
-/** @jsxImportSource react */
-
-'use server';
-
-const Page = async () => {
+const Page = () => {
   return <h1>hii</h1>;
 };
 

@@ -1,29 +1,11 @@
 const { withNx } = require('@nx/next');
-const { withSentryConfig } = require('@sentry/nextjs');
-const path = require('path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
-const nextConfig = {
-  reactStrictMode: true,
-  nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: true,
-  },
-  experimental: {
-    // this includes files from the monorepo base two directories up
-    outputFileTracingRoot: path.join(__dirname, '../../'),
-    serverActions: true,
-    appDir: true,
-  },
-  compiler: {
-    emotion: false,
-  },
-};
+const nextConfig = {};
 
-module.exports = [withSentryConfig, withNx].reduce((acc, next) => {
+module.exports = [withNx].reduce((acc, next) => {
   if (next.name === 'withSentryConfig') {
     return next(
       acc,
