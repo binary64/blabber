@@ -10,7 +10,7 @@
   "private": true,
   "packageManager": "pnpm@7.28.0",
   "engines": {
-    "node": "18"
+    "node": ">=20"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
