@@ -1,5 +1,5 @@
 const Page = () => {
-  return <h1>hii</h1>;
+  return <button className="btn btn-primary">hiiiwww</button>;
 };
 
 export default Page;
