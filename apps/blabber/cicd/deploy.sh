@@ -21,14 +21,11 @@ echo "Installed!"
 
 echo "Logging in..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" link --yes
-ls -al dist/apps/blabber
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" pull --yes
-ls -al dist/apps/blabber
 echo "Logged in!"
 
 echo "Building..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build
-ls -al dist/apps/blabber
 echo "Built!"
 
 echo "Deploying..."
