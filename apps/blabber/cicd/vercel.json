@@ -1,1 +1,5 @@
-{}
+{
+  "name": "blabber",
+  "buildCommand": "echo Already built",
+  "installCommand": "pnpm i"
+}
