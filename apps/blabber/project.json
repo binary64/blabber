@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/blabber",
   "projectType": "application",
+  "tags": ["react", "next", "frontend"],
   "targets": {
     "build": {
       "executor": "@nx/next:build",
@@ -47,22 +48,12 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/blabber/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/blabber/jest.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/blabber/**/*.{ts,tsx,js,jsx}"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "codegen": {
       "executor": "nx:run-commands",
@@ -78,6 +69,5 @@
     "deploy": {
       "command": "bash apps/blabber/cicd/deploy.sh"
     }
-  },
-  "tags": ["react", "next", "frontend"]
+  }
 }
