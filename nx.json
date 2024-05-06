@@ -2,9 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "e2e": {
@@ -51,5 +49,10 @@
   },
   "defaultProject": "blabber",
   "nxCloudAccessToken": "MjBiNjIwNjYtNGJiNS00MjNjLTgxNDMtNjM2NjM5OTdmMjc1fHJlYWQtd3JpdGU=",
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
+  }
 }
