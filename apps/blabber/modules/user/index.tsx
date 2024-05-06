@@ -9,6 +9,7 @@ import {
 } from './numberOfSiteUsers.generated';
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import packageJson from '../../../../package.json';
 
 const { version } = packageJson;
