@@ -22,13 +22,13 @@ echo "Installed!"
 echo "Logging in..."
 vercel --no-color --cwd=dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" link --yes
 ls -al dist/apps/blabber
-vercel --no-color --cwd=dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" pull --yes
-ls -al dist/apps/blabber
+# vercel --no-color --cwd=dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" pull --yes
+# ls -al dist/apps/blabber
 
 echo "Logged in!"
 echo "PWD: $PWD"
 echo "Cat of dist/apps/blabber/.vercel/project.json :-"
-cat dist/apps/blabber/.vercel/project.json
+cat dist/apps/blabber/.vercel/project.json || echo "(FILE NOT FOUND)"
 echo "Installing node dependencies..."
 (cd dist/apps/blabber && pnpm i)
 
