@@ -26,6 +26,11 @@ vercel --no-color --cwd=dist/apps/blabber --local-config=apps/blabber/cicd/verce
 ls -al dist/apps/blabber
 
 echo "Logged in!"
+echo "PWD: $PWD"
+echo "Cat of dist/apps/blabber/.vercel/project.json :-"
+cat dist/apps/blabber/.vercel/project.json
+echo "Installing node dependencies..."
+(cd dist/apps/blabber && pnpm i)
 
 echo "Building..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build
