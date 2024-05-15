@@ -5,16 +5,16 @@
     "next/core-web-vitals",
     "../../.eslintrc.json"
   ],
+  "settings": {
+    "next": {
+      "rootDir": "apps/blabber/"
+    }
+  },
   "ignorePatterns": ["!**/*", ".next/**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@next/next/no-html-link-for-pages": [
-          "error",
-          "apps/blabber/pages"
-        ]
-      }
+      "rules": {}
     },
     {
       "files": ["*.ts", "*.tsx"],

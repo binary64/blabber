@@ -9,10 +9,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest", "node"],
     "plugins": [
       {
         "name": "next"
@@ -23,7 +20,9 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "**/*.jsx"
+    "**/*.jsx",
+    "../../dist/apps/blabber/.next/types/**/*.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

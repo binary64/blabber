@@ -2,10 +2,11 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["lint", "^lint", "^build"],
       "cache": true
     },
     "e2e": {
+      "dependsOn": ["build"],
       "cache": true
     },
     "@nx/jest:jest": {
@@ -29,8 +30,13 @@
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintrc.js",
         "{workspaceRoot}/.eslintignore"
       ],
+      "dependsOn": ["tsc"],
+      "cache": true
+    },
+    "tsc": {
       "cache": true
     }
   },

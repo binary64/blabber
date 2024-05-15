@@ -3,6 +3,9 @@
   "version": "0.0.3",
   "license": "MIT",
   "scripts": {
+    "lint": "nx lint",
+    "build": "nx build",
+    "e2e": "nx e2e",
     "codegen": "nx run-many --target=codegen",
     "postinstall": "nx run-many --target=codegen",
     "dev": "concurrently --names CODEGEN,WEB,API --ks SIGKILL --kill-others-on-fail \"nx run-many --target=codegen --all --watch\" \"nx serve\" \"wait-on http://localhost:4200 && nx serve api\""

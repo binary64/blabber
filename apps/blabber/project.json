@@ -5,6 +5,20 @@
   "projectType": "application",
   "tags": ["react", "next", "frontend"],
   "targets": {
+    "tsc": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p apps/blabber/tsconfig.json --noEmit"
+          },
+          {
+            "command": "tsc -p apps/blabber/tsconfig.spec.json --noEmit"
+          }
+        ]
+      }
+    },
     "build": {
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
@@ -16,7 +30,7 @@
         "includeDevDependenciesInPackageJson": false,
         "debug": true,
         "profile": true,
-        "experimentalAppOnly": true,
+        "experimentalAppOnly": false,
         "generateLockfile": true
       },
       "configurations": {

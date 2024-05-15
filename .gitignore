@@ -52,3 +52,6 @@ Thumbs.db
 
 # Nix
 /.direnv/
+
+# TypeScript
+*.tsbuildinfo
