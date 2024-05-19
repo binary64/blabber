@@ -28,8 +28,10 @@ ls -al dist/apps/blabber
 echo "Logged in!"
 echo "PWD: $PWD"
 echo "Cat of dist/apps/blabber/.vercel/project.json :-"
-cat dist/apps/blabber/.vercel/project.json || echo "(FILE NOT FOUND)"
-echo "Installing node dependencies..."
+(cat dist/apps/blabber/.vercel/project.json && echo "") || echo "(FILE NOT FOUND)"
+
+echo "ls -al"
+ls -al
 
 echo "Building..."
 vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build --yes
