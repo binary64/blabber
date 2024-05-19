@@ -1,5 +1,8 @@
 {
   "name": "blabber",
   "buildCommand": "echo Already built",
-  "installCommand": "pnpm i"
+  "installCommand": "pnpm i",
+  "framework": "nextjs",
+  "devCommand": "pnpm dev",
+  "outputDirectory": "."
 }

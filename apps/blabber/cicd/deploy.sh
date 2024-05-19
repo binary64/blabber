@@ -33,7 +33,7 @@ echo "Installing node dependencies..."
 (cd dist/apps/blabber && pnpm i)
 
 echo "Building..."
-vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build
+vercel --no-color --cwd dist/apps/blabber --local-config=apps/blabber/cicd/vercel.json --token "$VERCEL_TOKEN" build --yes
 echo "Built!"
 
 echo "Deploying..."
