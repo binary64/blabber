@@ -1,8 +1,8 @@
 {
   "name": "blabber",
-  "buildCommand": "echo Already built",
+  "buildCommand": "pnpm nx build blabber",
   "installCommand": "pnpm i",
   "framework": "nextjs",
   "devCommand": "pnpm dev",
-  "outputDirectory": "."
+  "outputDirectory": "dist/apps/blabber/.next"
 }
