@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+html {
+}
+/* For WebKit browsers */
+html::-webkit-scrollbar {
+  width: 1em; /* Custom width */
+}
+
+html::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #777; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Optional: for rounded corners */
+}
+
+body {
+  overflow-y: scroll;
+}
