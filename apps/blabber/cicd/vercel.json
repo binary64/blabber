@@ -1,8 +1,0 @@
-{
-  "name": "blabber",
-  "buildCommand": "pnpm nx build blabber",
-  "installCommand": "pnpm i",
-  "framework": "nextjs",
-  "devCommand": "pnpm dev",
-  "outputDirectory": "dist/apps/blabber/.next"
-}
